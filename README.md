@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Inventory Management System
+
+A modern, responsive inventory management dashboard built with Next.js and Tailwind CSS. Track stock levels, monitor low-stock alerts, visualize stock movement, and manage products from a clean, unified interface.
+
+## Features
+
+- **Dashboard Overview** — At-a-glance stats for total products, low stock items, inventory value, and categories, each with trend indicators.
+- **Stock Movement Chart** — Interactive area chart (Recharts) showing stock in/out over 7, 30, or 90 day ranges.
+- **Low Stock Alerts** — Real-time list of items below their reorder threshold, with quick "mark as restocked" actions.
+- **Recent Activity Feed** — Table of the latest stock movements (in/out/adjustments) with timestamps.
+- **Add Product Modal** — Quick-add form for new inventory items that immediately reflects in the activity feed.
+- **Fully Responsive** — Mobile-first layout that scales from single-column on phones to a multi-column grid on desktop.
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 (`@theme` custom properties) |
+| Charts | Recharts |
+| Icons | lucide-react |
+| Fonts | Geist Sans / Geist Mono |
+
+## Design System
+
+Colors are defined once as CSS custom properties in `globals.css` and consumed as Tailwind utility classes throughout the app — no hardcoded hex values in components.
+
+```css
+@theme {
+  --color-primary: #f97316;
+  --color-primary-dark: #ea580c;
+  --color-bg: #ffffff;
+  --color-surface: #f9fafb;
+  --color-border: #e5e7eb;
+  --color-text: #171717;
+  --color-text-muted: #6b7280;
+
+  --radius-card: 0.75rem;
+  --spacing-section: 6rem;
+}
+```
+
+| Token | Utility class | Usage |
+|---|---|---|
+| `--color-primary` | `bg-primary` / `text-primary` | Primary actions, active states |
+| `--color-primary-dark` | `bg-primary-dark` | Hover states |
+| `--color-bg` | `bg-bg` | Page background |
+| `--color-surface` | `bg-surface` | Card / panel background |
+| `--color-border` | `border-border` | Dividers, card borders |
+| `--color-text` | `text-text` | Primary text |
+| `--color-text-muted` | `text-text-muted` | Secondary/muted text |
+| `--radius-card` | `rounded-card` | Card corner radius |
+
+> **Note:** Semantic status colors (success/warning/danger) aren't yet defined as custom tokens — the UI currently falls back to standard Tailwind `emerald`/`red` for stock-in/stock-out states. Consider adding `--color-success`, `--color-warning`, and `--color-danger` to the theme for full consistency.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18.17 or later
+- npm, yarn, or pnpm
+
+### Installation
+
+```bash
+git clone <your-repo-url>
+cd inventory-management
+npm install
+```
+
+### Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+├── app/
+│   ├── dashboard/
+│   │   └── page.tsx        # Dashboard overview page
+│   ├── globals.css         # Tailwind + custom color theme
+│   └── layout.tsx
+├── components/              # Shared UI components
+├── public/                  # Static assets
+├── tailwind.config.js       # Tailwind configuration
+└── package.json
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Roadmap
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- [ ] Product list page (searchable, filterable, sortable table)
+- [ ] Add/Edit product form as a dedicated page
+- [ ] Category management
+- [ ] Sidebar + top navigation shell
+- [ ] Order/purchase tracking
+- [ ] User authentication & roles
+- [ ] Semantic color tokens (`success` / `warning` / `danger`)
+- [ ] Real backend integration (replace mock data)
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/your-feature`)
+3. Commit your changes
+4. Push to the branch and open a Pull Request
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+This project is licensed under the MIT License.
